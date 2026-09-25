@@ -1,0 +1,31 @@
+Configure DHCPv4
+
+PC1 -> Switch -> Router
+
+Configure router's LAN interface
+int g0/0
+ip add 192.168.1.1 255.255.255.0
+no shutdown 
+exit
+
+check
+show ip interface brief
+
+Exclude addresses
+ip dhcp excluded-address 192.168.1.1
+
+Create DHCP pool
+ip dhcp pool R1-LAN
+
+Network DHCP is serving
+network 192.168.1.0 255.255.255.0
+
+default gateway
+default-router 192.168.1.1
+
+dns server
+dns-server 8.8.8.8
+exit
+
+Automatically configure IP addresses to PCs
+Verify connecitivty by pinging pc to router
